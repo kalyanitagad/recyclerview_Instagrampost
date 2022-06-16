@@ -14,15 +14,21 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerPosts;
     private PostsAdapter postsAdapter;
     private int[] imgPost;
+    private Post posted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        posted();
         initData();
         initViews();
 
+    }
+    public Post posted()
+    {
+        return posted;
     }
 
     private void initViews() {

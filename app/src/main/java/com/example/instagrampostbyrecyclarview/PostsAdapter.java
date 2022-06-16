@@ -32,6 +32,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
             txtPostTitle = itemView.findViewById(R.id.txtPostTitle);
             txtPostLikes = itemView.findViewById(R.id.txtPostLikes);
             imageViewLikeButton = itemView.findViewById(R.id.imgViewLikeButton);
+
+            imageViewLikeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Post post = posts.get(getAdapterPosition());
+                    int likeCountStatus = Integer.parseInt(txtPostLikes.getText().toString());
+                    likeCountStatus++;
+                    post.setLikes(likeCountStatus);
+                    txtPostLikes.setText(""+likeCountStatus);
+                }
+            });
         }
     }
 
@@ -51,14 +62,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         holder.txtPostLikes.setText("" + post.getLikes());
         holder.imageViewLikeButton.setImageResource(post.getLikeImageId());
 
-        holder.imageViewLikeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int likes = Integer.parseInt(holder.txtPostLikes.getText().toString());
-                likes++;
-                holder.txtPostLikes.setText("" + likes);
-            }
-        });
     }
 
     @Override
